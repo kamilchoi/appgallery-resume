@@ -2,7 +2,7 @@ import dash
 from dash import html
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
-import geopandas
+import geopandas as gpd
 import pandas
 
 # import df

@@ -69,7 +69,6 @@ fig = px.choropleth_mapbox(df_state,
 dash.register_page(__name__)
 
 # app
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 def layout():
   return

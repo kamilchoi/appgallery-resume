@@ -1,6 +1,7 @@
 import dash
 from dash import Dash, html
 import dash_bootstrap_components as dbc
+import geopandas
 
 app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.SUPERHERO])
 server = app.server

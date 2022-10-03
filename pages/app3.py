@@ -6,7 +6,7 @@ import geopandas
 import pandas
 
 # import df
-pc_sales_df = gpd.read_file('pc_sales_df.geojson')
+pc_sales_df = gpd.read_file('assets/pc_sales_df.geojson')
 
 dash.register_page(__name__)
 

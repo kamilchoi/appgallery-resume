@@ -2,6 +2,11 @@ import dash
 from dash import html
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
+import geopandas
+import pandas
+
+# import df
+pc_sales_df = gpd.read_file('pc_sales_df.geojson')
 
 dash.register_page(__name__)
 

@@ -183,11 +183,11 @@ def layout():
     
 # access legend labels, colours
 @callback(
-    Output('legend_data', 'data'),
-    Output('legend_label_test_area', 'children'),
-    Input({'type' : 'legend_div', 'index' : ALL},'n_clicks'),
-    State({'type' : 'colour_label', 'index' : ALL}, 'value'),
-    State({'type' : 'colour_input', 'index' : ALL}, 'value'),
+    Output(component_id = 'legend_data', component_property = 'data'),
+    Output(component_id = 'legend_label_test_area', component_property = 'children'),
+    Input(component_id = {'type' : 'legend_div', 'index' : ALL},component_property = 'n_clicks'),
+    State(component_id = {'type' : 'colour_label', 'index' : ALL}, component_property = 'value'),
+    State(component_id = {'type' : 'colour_input', 'index' : ALL}, component_property = 'value'),
     prevent_initial_call = True
     )
 def get_legend_label(n_clicks, legend_labels, legend_colour):

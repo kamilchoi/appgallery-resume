@@ -3,7 +3,7 @@ from dash import html, dcc, no_update, ctx
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
 import geopandas as gpd
-import pandas
+import pandas as pd
 
 # import df
 pc_sales_df = gpd.read_file('assets/pc_sales_df.geojson')

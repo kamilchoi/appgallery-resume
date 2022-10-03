@@ -71,97 +71,99 @@ dash.register_page(__name__)
 # app
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-app.layout = html.Div(
-    [
-     dbc.Row(                     
-         dcc.Dropdown(id = 'select_state',
-                      options = [{'label' : i, 'value' : i} for i in pc_sales_df.codestte.unique()],
-                      value = 'NSW',
-                      multi = True,
-                      style = {'width' : 400}  
-        )
-    ),
-     
-     dbc.Row(
-         [
-             dbc.Col(
-                 [                                
-                    dcc.Graph(id = 'graph', figure = fig)                
-                 ], width = 9       
-         
-            ),
-             
-             dbc.Col(
-                 [  
-                     html.Br(),
-                     html.Br(),
-                     html.Div(
-                         [
-                             html.Button('Download map and legend', id = 'btn_download_map', style = {'width' : 200, 'height' : 75}),
-                     
-                             dcc.Upload('Import data', id = 'import_data',
-                                style = {#'width' : '30%', 
-                                        #'height' : '80px',
-                                        'lineheight' : '200px',
-                                        'borderWidth' : '1px',
-                                        'textAlign' : 'center',
-                                        'margin' : '20px',
-                                        'cursor' : 'pointer',
-                                        'background-color' : 'rgb(201,201,201)'
-                                        }
-                            ),
-                     
-                            html.Button('Add new legend entry', id = 'btn_add_legend_entry', style = {'width' : 200, 'height' : 75})
-                         ], style = {'display' : 'flex'}
-                    ),
-                     
-                    #  html.Div(id = {'type' : 'legend_div',
-                    #                 'index': 0},
-                    #           children =
-                    #      [                               
-                    #          dbc.Input(id = {'type' : 'colour_input',
-                    #                          'index' : 0},
-                    #                    type = 'color',
-                    #                    style = {'width' : 75, 'height' : 50}                             
-                    #         ),
-                             
-                    #          dbc.Input(id = {'type' : 'colour_label',
-                    #                          'index' : 0},
-                    #                    type = 'text',
-                    #                    style = {'width' : 400, 'height' : 50}
-                    #         )
-                    #     ], style = {'display' : 'flex'}
-                    # ),
-                    
-                    html.Div(id = 'test_area'),
-                    
-                    dcc.Store(id = 'legend_triggered'), # which legend was last triggered
-                    
-                    dcc.Store(id = 'map_legend_data'), # map data stored for download
-                    
-                    dcc.Store(id = 'map_upload'),
-                    
-                    dcc.Store(id = 'nn_click_count', data = 0),
-                    
-                    dcc.Store(id = 'legend_data'),
-                                   
-                    dcc.Download(id = 'download_map_data'),
-                    
-                    html.Button('test button', id = 'test_button', style = {'width' : 200, 'height' : 75}),
-                    
-                    html.Div(id = 'legend_container', children = []),
+def layout():
+  return
+    layout = html.Div(
+      [
+       dbc.Row(                     
+           dcc.Dropdown(id = 'select_state',
+                        options = [{'label' : i, 'value' : i} for i in pc_sales_df.codestte.unique()],
+                        value = 'NSW',
+                        multi = True,
+                        style = {'width' : 400}  
+          )
+      ),
 
-                    html.Div(id = 'test_import_area'),
-                    
-                    html.Div(id = 'legend_label_test_area', children = [])
+       dbc.Row(
+           [
+               dbc.Col(
+                   [                                
+                      dcc.Graph(id = 'graph', figure = fig)                
+                   ], width = 9       
 
-                           
-                 ]
-            )                 
-        ]
-    )
-    ]
-)
+              ),
+
+               dbc.Col(
+                   [  
+                       html.Br(),
+                       html.Br(),
+                       html.Div(
+                           [
+                               html.Button('Download map and legend', id = 'btn_download_map', style = {'width' : 200, 'height' : 75}),
+
+                               dcc.Upload('Import data', id = 'import_data',
+                                  style = {#'width' : '30%', 
+                                          #'height' : '80px',
+                                          'lineheight' : '200px',
+                                          'borderWidth' : '1px',
+                                          'textAlign' : 'center',
+                                          'margin' : '20px',
+                                          'cursor' : 'pointer',
+                                          'background-color' : 'rgb(201,201,201)'
+                                          }
+                              ),
+
+                              html.Button('Add new legend entry', id = 'btn_add_legend_entry', style = {'width' : 200, 'height' : 75})
+                           ], style = {'display' : 'flex'}
+                      ),
+
+                      #  html.Div(id = {'type' : 'legend_div',
+                      #                 'index': 0},
+                      #           children =
+                      #      [                               
+                      #          dbc.Input(id = {'type' : 'colour_input',
+                      #                          'index' : 0},
+                      #                    type = 'color',
+                      #                    style = {'width' : 75, 'height' : 50}                             
+                      #         ),
+
+                      #          dbc.Input(id = {'type' : 'colour_label',
+                      #                          'index' : 0},
+                      #                    type = 'text',
+                      #                    style = {'width' : 400, 'height' : 50}
+                      #         )
+                      #     ], style = {'display' : 'flex'}
+                      # ),
+
+                      html.Div(id = 'test_area'),
+
+                      dcc.Store(id = 'legend_triggered'), # which legend was last triggered
+
+                      dcc.Store(id = 'map_legend_data'), # map data stored for download
+
+                      dcc.Store(id = 'map_upload'),
+
+                      dcc.Store(id = 'nn_click_count', data = 0),
+
+                      dcc.Store(id = 'legend_data'),
+
+                      dcc.Download(id = 'download_map_data'),
+
+                      html.Button('test button', id = 'test_button', style = {'width' : 200, 'height' : 75}),
+
+                      html.Div(id = 'legend_container', children = []),
+
+                      html.Div(id = 'test_import_area'),
+
+                      html.Div(id = 'legend_label_test_area', children = [])
+
+
+                   ]
+              )                 
+          ]
+      )
+      ]
+  )
 # access legend labels, colours
 @app.callback(
     Output('legend_data', 'data'),

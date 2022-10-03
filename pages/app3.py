@@ -9,7 +9,7 @@ import pandas as pd
 pc_sales_df = gpd.read_file('assets/pc_sales_df.geojson')
 
 # join ship from locations
-delivery_loc = pd.read_csv('pc_shipfrom_loc.csv')
+delivery_loc = pd.read_csv('assets/pc_shipfrom_loc.csv')
 delivery_loc['Row Labels'] = delivery_loc['Row Labels'].astype('str')
 delivery_loc['Row Labels'] = delivery_loc['Row Labels'].apply(lambda x: '0' + x if x.startswith('8') else x)
 delivery_loc.replace(0, False, inplace = True)

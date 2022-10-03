@@ -1,9 +1,22 @@
 import dash
 from dash import html, dcc, no_update, ctx
 import dash_bootstrap_components as dbc
+from dash.dependencies import Input, Output, State, MATCH, ALL
 from .side_bar import sidebar
 import geopandas as gpd
 import pandas as pd
+import numpy as np
+import plotly.io as pio
+import json
+from datetime import datetime
+import numpy as np
+import base64
+import io
+import ast
+import sys
+import plotly.express as px
+import plotly.graph_objects as go
+
 
 # import df
 pc_sales_df = gpd.read_file('assets/pc_sales_df.geojson')

@@ -68,8 +68,10 @@ fig = px.choropleth_mapbox(df_state,
 
 dash.register_page(__name__)
 
-def layout():
-    return html.Div(
+# app
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+app.layout = html.Div(
     [
      dbc.Row(                     
          dcc.Dropdown(id = 'select_state',
@@ -160,7 +162,6 @@ def layout():
     )
     ]
 )
-  
 # access legend labels, colours
 @app.callback(
     Output('legend_data', 'data'),
@@ -358,4 +359,3 @@ def update_map(selectPC, selectedState, selectedColor, legendTriggered, mapUploa
     debug_output = 'index triggered: ' + str(legendTriggered) + ' color selected: ' +str(selectedColor) + ' postcode: ' + str(postcode) + ' postcode list: ' + str(postcode_list) + ' ' + str(postcode_colour_d)           
     
     return fig, None, postcode_colour_d, html.Pre(debug_output) , clear_map_data
-  

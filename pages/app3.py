@@ -71,8 +71,7 @@ dash.register_page(__name__)
 # app
 
 def layout():
-  return
-    layout = html.Div(
+  return layout = html.Div(
       [
        dbc.Row(                     
            dcc.Dropdown(id = 'select_state',
@@ -163,6 +162,7 @@ def layout():
       )
       ]
   )
+    
 # access legend labels, colours
 @app.callback(
     Output('legend_data', 'data'),

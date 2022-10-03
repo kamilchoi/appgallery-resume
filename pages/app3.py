@@ -38,6 +38,33 @@ pc_sales_df.set_index('poa_code21', inplace = True)
 df = pc_sales_df
 df['terr_colour'] = np.NaN
 
+# state_df = pc_sales_df[pc_sales_df.codestte == state]
+state_coords = {'NT' : [-19.491411, 132.550964],
+                'NSW' : [-33.872762037132375, 147.22963557432993],
+                'VIC' : [-37.020100, 144.964600],
+                'QLD' : [-20.917574, 142.702789],
+                'SA' : [-30.000233, 136.209152],
+                'WA' : [-25.953512, 117.857048],
+                'TAS' : [-41.640079, 146.315918]
+                }
+
+# initialise variables
+df_state = df[df.codestte == 'NSW']
+
+postcode_colour_d = dict()
+
+fig = px.choropleth_mapbox(df_state,
+                           geojson = df_state.geometry,
+                           locations = df_state.index,
+                           opacity = 0.2,
+                           center = {'lat' : -33.872762037132375, 'lon' : 147.22963557432993},
+                           zoom = 4.5,
+                           height = 1200,
+                           width = 1600,
+                           mapbox_style="carto-positron",
+                           # uirevision = 'Retain user zoom preferences'
+)
+
 
 dash.register_page(__name__)
 

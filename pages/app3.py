@@ -164,7 +164,7 @@ def layout():
   )
     
 # access legend labels, colours
-@app.callback(
+@callback(
     Output('legend_data', 'data'),
     Output('legend_label_test_area', 'children'),
     Input({'type' : 'legend_div', 'index' : ALL},'n_clicks'),
@@ -178,7 +178,7 @@ def get_legend_label(n_clicks, legend_labels, legend_colour):
 
 
 # import data
-@app.callback(
+@callback(
     Output('map_upload', 'data'),
     Output('test_import_area', 'children'), # populate div while debugging
     Input('import_data', 'contents'),
@@ -192,7 +192,7 @@ def parse_contents(contents):
 
 
 # download data
-@app.callback(
+@callback(
     Output('download_map_data', 'data'),
     # Output('legend_label_test_area', 'children'),
     Input('btn_download_map', 'n_clicks'),
@@ -211,7 +211,7 @@ def download_data(n_clicks, data, legend_data): # this version is outputting map
 
 
 # add new legend entry
-@app.callback(
+@callback(
     Output('legend_container', 'children'),
     # Output('btn_add_legend_entry', 'n_clicks'),
     Output('nn_click_count', 'data'),
@@ -277,7 +277,7 @@ def add_legend(n_clicks, map_upload, container, nn_clicks):
         return container, nn_clicks
     
 # colour selected listener
-@app.callback(
+@callback(
     Output('legend_triggered', 'data'),
     # Output('test_area', 'children'),
     Input({'type' : 'legend_div', 'index' : ALL}, 'n_clicks'),
@@ -288,7 +288,7 @@ def colour_listener(colourLastSelected):
     
 
 # update map
-@app.callback(
+@callback(
     Output('graph', 'figure'),
     Output('graph', 'clickData'),
     Output('map_legend_data', 'data'),

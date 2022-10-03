@@ -71,7 +71,7 @@ dash.register_page(__name__)
 # app
 
 def layout():
-  return layout = html.Div(
+  return html.Div(
       [
        dbc.Row(                     
            dcc.Dropdown(id = 'select_state',

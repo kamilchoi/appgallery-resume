@@ -1,5 +1,5 @@
 import dash
-from dash import html
+from dash import html, dcc, no_update, ctx
 import dash_bootstrap_components as dbc
 from .side_bar import sidebar
 import geopandas as gpd
@@ -7,6 +7,24 @@ import pandas
 
 # import df
 pc_sales_df = gpd.read_file('assets/pc_sales_df.geojson')
+
+# join ship from locations
+delivery_loc = pd.read_csv('pc_shipfrom_loc.csv')
+delivery_loc['Row Labels'] = delivery_loc['Row Labels'].astype('str')
+delivery_loc['Row Labels'] = delivery_loc['Row Labels'].apply(lambda x: '0' + x if x.startswith('8') else x)
+delivery_loc.replace(0, False, inplace = True)
+delivery_loc.replace(1, True, inplace = True)
+pc_sales_df = pc_sales_df.merge(delivery_loc, left_on = 'poa_code21', right_on = 'Row Labels', how = 'left')
+
+
+# ready geometries
+pc_sales_df['geometry'] = pc_sales_df.to_crs(pc_sales_df.estimate_utm_crs()).simplify(2000).to_crs(pc_sales_df.crs) # simplify boundaries to 1km
+pc_sales_df = pc_sales_df.to_crs( epsg = 4326) # change to lat/long
+pc_sales_df.set_index('poa_code21', inplace = True)
+
+df = pc_sales_df
+df['terr_colour'] = np.NaN
+
 
 dash.register_page(__name__)
 

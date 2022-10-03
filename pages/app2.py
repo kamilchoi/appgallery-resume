@@ -71,15 +71,28 @@ dash.register_page(__name__)
 # app
 
 def layout():
-  return html.Div(
+    return html.Div([
+        dbc.Row(
+            [
+                dbc.Col(
+                    [
+                        sidebar()
+                    ], xs=4, sm=4, md=2, lg=2, xl=2, xxl=2),
+
+                dbc.Col(
+                    [
+                        html.H3('App 3 - build your own app here and let me know if you have questions', style={'textAlign':'center'}),
+                      html.Div(
       [
-       dbc.Row(                     
+       dbc.Row(  
+         [
            dcc.Dropdown(id = 'select_state',
                         options = [{'label' : i, 'value' : i} for i in pc_sales_df.codestte.unique()],
                         value = 'NSW',
                         multi = True,
                         style = {'width' : 400}  
           )
+         ]
       ),
 
        dbc.Row(
@@ -162,6 +175,11 @@ def layout():
       )
       ]
   )
+                      
+                    ], xs=8, sm=8, md=10, lg=10, xl=10, xxl=10)
+            ]
+        )
+    ])
     
 # access legend labels, colours
 @callback(
